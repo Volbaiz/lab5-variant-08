@@ -48,3 +48,17 @@ def save_results_to_file(filename: str, data: tuple[float, int, list[tuple[float
         file.write("*" * 50 + "\n")
         for x_before, x_after, iterations, delta in history:
             file.write(f"{iterations:>12} | {x_before:>10.6f} | {x_after:>10.6f} | {abs(delta):>9.6f} \n")
+
+def main() -> None:
+    epsilon = 0.00005
+    a, b = [0.1, 1]
+    x0 = (a + b) / 2
+    all_results = solve_iteration(phi, d_phi, x0, epsilon)
+    root, iterations, _ = all_results
+    print(f"The solution for the equation is: {round(root, 7)}")
+    print(f"The quantity of the iterations: {iterations}")
+
+    save_results_to_file("results_variant_08.txt", all_results)
+
+if __name__ == "__main__": # цю умову Джеміні підказав
+    main()
