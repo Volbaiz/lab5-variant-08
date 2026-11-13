@@ -37,3 +37,14 @@ def solve_iteration(basic_function: Callable[[float], float], derivative_functio
             break
 
     return (x_before, iterations, history_of_calculations)
+
+def save_results_to_file(filename: str, data: tuple[float, int, list[tuple[float, float, int, float]]]) -> None:
+    root, iterations, history = data
+    with open(filename, "w", encoding = 'utf-8') as file:
+        file.write(f"The solution is: \n")
+        file.write(f"The root is: {root:.6f} \n")
+        file.write(f"The quantity of iterations: {iterations} \n\n\n")
+        file.write(f"{'Iteration':<12} | {'x_before':>10} | {'x_after':>10} | {'delta':>9} \n")
+        file.write("*" * 50 + "\n")
+        for x_before, x_after, iterations, delta in history:
+            file.write(f"{iterations:>12} | {x_before:>10.6f} | {x_after:>10.6f} | {abs(delta):>9.6f} \n")
