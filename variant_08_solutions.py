@@ -45,7 +45,7 @@ def save_results_to_file(filename: str, data: tuple[float, int, list[tuple[float
         file.write(f"The root is: {root:.6f} \n")
         file.write(f"The quantity of iterations: {iterations} \n\n\n")
         file.write(f"{'Iteration':<12} | {'x_before':>10} | {'x_after':>10} | {'delta':>9} \n")
-        file.write("*" * 50 + "\n")
+        file.write("*" * 60 + "\n")
         for x_before, x_after, iterations, delta in history:
             file.write(f"{iterations:>12} | {x_before:>10.6f} | {x_after:>10.6f} | {abs(delta):>9.6f} \n")
 
